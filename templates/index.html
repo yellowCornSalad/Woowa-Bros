@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}게임 데이터 분석 대시보드 - 홈{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">게임 데이터 분석 대시보드</h1>
+        <p class="hero-subtitle">
+            비디오 게임 산업의 성공 요인을 데이터로 분석한 통계 프로젝트입니다. 
+            2004년부터 2010년까지의 게임 데이터를 활용하여 장르별 매출 분석, 
+            통계적 추론, 머신러닝 모델링을 수행했습니다.
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">3</div>
+                <div class="hero-stat-label">프로젝트</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">1770</div>
+                <div class="hero-stat-label">게임 데이터</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">7년</div>
+                <div class="hero-stat-label">분석 기간</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <i class="fas fa-chart-line" style="font-size: 8rem; color: #20B2AA; position: relative; z-index: 2;"></i>
+    </div>
+</div>
+
+<div class="action-bar">
+    <a href="/project1" class="action-card">
+        <div class="action-icon">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="action-title">장르별 매출 분석</div>
+    </a>
+    <a href="/project2" class="action-card">
+        <div class="action-icon">
+            <i class="fas fa-calculator"></i>
+        </div>
+        <div class="action-title">통계적 추론</div>
+    </a>
+    <a href="/project3" class="action-card">
+        <div class="action-icon">
+            <i class="fas fa-brain"></i>
+        </div>
+        <div class="action-title">머신러닝 모델링</div>
+    </a>
+</div>
+
+<div class="content-grid">
+    <div class="content-card">
+        <h3>
+            공지사항
+            <a href="#" class="more-link">더보기+</a>
+        </h3>
+        <div class="announcement-item">
+            <div class="announcement-icon"></div>
+            <div class="announcement-date">2024.01.15</div>
+            <div class="announcement-text">게임 데이터 분석 프로젝트 시작</div>
+        </div>
+        <div class="announcement-item">
+            <div class="announcement-icon"></div>
+            <div class="announcement-date">2024.01.20</div>
+            <div class="announcement-text">프로젝트 1 완료 - 장르별 매출 분석</div>
+        </div>
+        <div class="announcement-item">
+            <div class="announcement-icon"></div>
+            <div class="announcement-date">2024.01.25</div>
+            <div class="announcement-text">프로젝트 2 완료 - 통계적 추론</div>
+        </div>
+        <div class="announcement-item">
+            <div class="announcement-icon"></div>
+            <div class="announcement-date">2024.01.30</div>
+            <div class="announcement-text">프로젝트 3 완료 - 머신러닝 모델링</div>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <div class="featured-card">
+            <h4>손님들로 북적북적한 우리동네 대박집이 부러우세요?</h4>
+            <p>
+                게임 산업에서도 마찬가지입니다! 어떤 게임이 가장 인기 있고 
+                매출이 좋을지 궁금하시죠? 우리의 데이터 분석을 통해 
+                성공적인 게임의 비밀을 파헤쳐보세요.
+            </p>
+        </div>
+        <div class="featured-card">
+            <h4>자주 묻는 질문</h4>
+            <p>
+                데이터 분석에 대한 궁금증이 있으신가요? 
+                프로젝트 진행 과정에서 발생한 질문들과 답변을 확인해보세요.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <div class="expert-card">
+            <div class="expert-image">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <div class="expert-content">
+                <h4>전문가 칼럼</h4>
+                <p>Action 게임이 쉽게 성공하는 이유!</p>
+            </div>
+        </div>
+        <div class="expert-card" style="margin-top: 1rem;">
+            <div class="expert-image">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="expert-content">
+                <h4>분석가들의 베스트 궁금증</h4>
+                <p>자주 묻는 질문 모음</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="service-grid">
+    <a href="/project1" class="service-card">
+        <div class="service-icon">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <h3 class="service-title">게임 장르별 매출 분석</h3>
+        <p class="service-description">
+            비디오 게임 장르가 매출 성과에 미치는 영향을 분석합니다. 
+            Action, Sports, Racing 등 다양한 장르별 총 매출과 평균 매출을 비교하여 
+            어떤 장르가 가장 성공적인지 파악합니다.
+        </p>
+        <div class="service-stats">
+            <div class="service-stat">
+                <div class="service-stat-number">6</div>
+                <div class="service-stat-label">장르 분석</div>
+            </div>
+            <div class="service-stat">
+                <div class="service-stat-number">매출</div>
+                <div class="service-stat-label">주요 지표</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="/project2" class="service-card">
+        <div class="service-icon">
+            <i class="fas fa-calculator"></i>
+        </div>
+        <h3 class="service-title">통계적 추론</h3>
+        <p class="service-description">
+            신뢰구간과 가설검정을 통한 통계적 분석을 수행합니다. 
+            Platform 게임의 비율에 대한 신뢰구간을 계산하고, 
+            Action과 Platform 장르 간의 매출 차이를 가설검정으로 분석합니다.
+        </p>
+        <div class="service-stats">
+            <div class="service-stat">
+                <div class="service-stat-number">95%</div>
+                <div class="service-stat-label">신뢰구간</div>
+            </div>
+            <div class="service-stat">
+                <div class="service-stat-number">가설검정</div>
+                <div class="service-stat-label">분석 방법</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="/project3" class="service-card">
+        <div class="service-icon">
+            <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="service-title">머신러닝 모델링</h3>
+        <p class="service-description">
+            선형회귀와 로지스틱 회귀를 사용하여 게임 매출을 예측하는 모델을 구축합니다. 
+            리뷰 점수, 출시 연도, 중고가격 등의 변수를 활용하여 
+            게임의 성공 가능성을 예측합니다.
+        </p>
+        <div class="service-stats">
+            <div class="service-stat">
+                <div class="service-stat-number">2</div>
+                <div class="service-stat-label">모델 타입</div>
+            </div>
+            <div class="service-stat">
+                <div class="service-stat-number">예측</div>
+                <div class="service-stat-label">주요 기능</div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">프로젝트 개요</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem; font-size: 1.1rem; text-align: center;">
+        이 프로젝트는 2004년부터 2010년까지 출시된 비디오 게임들의 데이터를 분석하여 
+        게임 산업의 성공 요인을 파악하는 것을 목표로 합니다. 
+        Dr. Joe Cox가 수집한 데이터셋을 기반으로 하여, 
+        게임 장르, 리뷰 점수, 출시 연도, 중고가격 등의 다양한 변수들이 
+        게임의 매출 성과에 미치는 영향을 분석합니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>1770</h3>
+            <p>분석된 게임 수</p>
+        </div>
+        <div class="stat-card">
+            <h3>6</h3>
+            <p>주요 게임 장르</p>
+        </div>
+        <div class="stat-card">
+            <h3>7년</h3>
+            <p>분석 기간</p>
+        </div>
+        <div class="stat-card">
+            <h3>3개</h3>
+            <p>분석 프로젝트</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">사용된 기술 스택</h2>
+    <div class="tech-stack">
+        <div class="tech-item">
+            <i class="fab fa-python"></i>
+            <h4>Python</h4>
+            <p>데이터 분석 및 시각화</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-chart-line"></i>
+            <h4>Pandas & NumPy</h4>
+            <p>데이터 처리 및 수치 계산</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-chart-pie"></i>
+            <h4>Matplotlib & Seaborn</h4>
+            <p>데이터 시각화</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-robot"></i>
+            <h4>Scikit-learn</h4>
+            <p>머신러닝 모델링</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-flask"></i>
+            <h4>Flask</h4>
+            <p>웹 애플리케이션</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-docker"></i>
+            <h4>Docker & K8s</h4>
+            <p>컨테이너화 및 배포</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

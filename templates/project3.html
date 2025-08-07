@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}프로젝트 3: 머신러닝 모델링{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">프로젝트 3: 머신러닝 모델링</h1>
+    <p class="hero-subtitle">선형회귀와 로지스틱 회귀를 통한 게임 매출 예측</p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">연구 목표</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 프로젝트는 머신러닝 기법을 사용하여 게임 매출을 예측하는 모델을 구축합니다. 
+        선형회귀를 통해 연속적인 매출 값을 예측하고, 
+        로지스틱 회귀를 통해 게임의 성공 가능성(평균 이상 매출)을 분류합니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>2</h3>
+            <p>모델 타입</p>
+        </div>
+        <div class="stat-card">
+            <h3>3</h3>
+            <p>예측 변수</p>
+        </div>
+        <div class="stat-card">
+            <h3>80:20</h3>
+            <p>훈련:테스트 비율</p>
+        </div>
+        <div class="stat-card">
+            <h3>Scikit-learn</h3>
+            <p>사용 라이브러리</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">선형회귀 모델</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        리뷰 점수, 출시 연도, 중고가격을 독립변수로 하여 게임 매출을 예측하는 선형회귀 모델을 구축했습니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(r2) }}</h3>
+            <p>R² 점수</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(rmse) }}</h3>
+            <p>RMSE</p>
+        </div>
+        <div class="stat-card">
+            <h3>3</h3>
+            <p>독립변수 수</p>
+        </div>
+        <div class="stat-card">
+            <h3>선형회귀</h3>
+            <p>모델 타입</p>
+        </div>
+    </div>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">
+            <i class="fas fa-chart-line"></i> 선형회귀 모델 해석
+        </h4>
+        <p style="color: #666; line-height: 1.6;">
+            선형회귀 모델의 R² 점수는 {{ "%.3f"|format(r2) }}로, 
+            모델이 매출 변동의 약 {{ "%.1f"|format(r2 * 100) }}%를 설명합니다. 
+            RMSE는 {{ "%.3f"|format(rmse) }}로, 예측값과 실제값의 평균 차이를 나타냅니다.
+        </p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">로지스틱 회귀 모델</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        게임이 평균 이상의 매출을 달성할 가능성을 예측하는 로지스틱 회귀 모델을 구축했습니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(auc) }}</h3>
+            <p>AUC 점수</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(accuracy) }}</h3>
+            <p>정확도</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(sensitivity) }}</h3>
+            <p>민감도</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(specificity) }}</h3>
+            <p>특이도</p>
+        </div>
+    </div>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">
+            <i class="fas fa-brain"></i> 로지스틱 회귀 모델 해석
+        </h4>
+        <p style="color: #666; line-height: 1.6;">
+            로지스틱 회귀 모델의 AUC 점수는 {{ "%.3f"|format(auc) }}로, 
+            모델이 성공적인 게임과 그렇지 않은 게임을 구분하는 능력이 {{ "%.1f"|format(auc * 100) }}%입니다. 
+            전체 정확도는 {{ "%.1f"|format(accuracy * 100) }}%이며, 
+            민감도는 {{ "%.1f"|format(sensitivity * 100) }}%, 특이도는 {{ "%.1f"|format(specificity * 100) }}%입니다.
+        </p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">모델 성능 시각화</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        아래 차트는 선형회귀와 로지스틱 회귀 모델의 성능을 다양한 관점에서 보여줍니다. 
+        잔차 분석, 실제값 vs 예측값 비교, ROC 곡선, 혼동행렬을 통해 모델의 성능을 종합적으로 평가할 수 있습니다.
+    </p>
+    
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ chart_url }}" alt="머신러닝 모델 성능 분석 차트">
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">주요 발견사항</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-chart-line"></i> 선형회귀 성능
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                선형회귀 모델은 R² 점수 {{ "%.3f"|format(r2) }}로 
+                매출 예측에 있어 중간 정도의 성능을 보입니다. 
+                이는 게임 매출이 복잡한 요인들에 의해 결정됨을 시사합니다.
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-brain"></i> 로지스틱 회귀 성능
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                로지스틱 회귀 모델은 AUC {{ "%.3f"|format(auc) }}로 
+                성공적인 게임 분류에 있어 양호한 성능을 보입니다. 
+                다만 민감도가 낮아 개선의 여지가 있습니다.
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-cogs"></i> 모델 개선 방향
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                더 많은 변수 추가, 비선형 관계 모델링, 
+                앙상블 방법 등을 통해 모델 성능을 향상시킬 수 있습니다. 
+                특히 로지스틱 회귀의 민감도 개선이 필요합니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">결론 및 시사점</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 머신러닝 분석을 통해 다음과 같은 인사이트를 얻을 수 있습니다:
+    </p>
+    
+    <ul style="line-height: 1.8; color: #666; margin-left: 2rem;">
+        <li style="margin-bottom: 1rem;">
+            <strong>예측 모델의 한계:</strong> 선형회귀 모델의 R² 점수가 {{ "%.3f"|format(r2) }}로 
+            게임 매출 예측의 복잡성을 보여줍니다. 리뷰 점수, 출시 연도, 중고가격만으로는 
+            매출의 모든 변동을 설명하기 어렵습니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>분류 모델의 성능:</strong> 로지스틱 회귀 모델의 AUC {{ "%.3f"|format(auc) }}는 
+            성공적인 게임을 식별하는 데 유용한 도구임을 시사합니다. 
+            다만 민감도 개선이 필요합니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>변수 중요도:</strong> 리뷰 점수와 중고가격이 게임 성공에 중요한 영향을 미치며, 
+            출시 연도도 매출에 영향을 줍니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>실무 적용:</strong> 이 모델들은 게임 개발 및 마케팅 전략 수립에 
+            참고 자료로 활용할 수 있으며, 추가 변수와 고급 모델링 기법을 통해 
+            성능을 향상시킬 수 있습니다.
+        </li>
+    </ul>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">사용된 머신러닝 기법</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-chart-line" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>선형회귀</h4>
+            <p>연속값 예측</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-brain" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>로지스틱 회귀</h4>
+            <p>이진 분류</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-random" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>훈련/테스트 분할</h4>
+            <p>모델 검증</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-chart-bar" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>성능 평가</h4>
+            <p>다양한 지표</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">모델 수식</h2>
+    <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin-top: 1rem;">
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">선형회귀 모델</h4>
+        <p style="font-family: 'Courier New', monospace; background: white; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">
+            US Sales (millions) = β₀ + β₁ × Review Score + β₂ × Year Released + β₃ × Used Price
+        </p>
+        
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">로지스틱 회귀 모델</h4>
+        <p style="font-family: 'Courier New', monospace; background: white; padding: 1rem; border-radius: 5px;">
+            log(odds of success) = β₀ + β₁ × Review Score + β₂ × Year Released + β₃ × Used Price
+        </p>
+    </div>
+</div>
+{% endblock %} 

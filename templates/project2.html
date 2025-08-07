@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}프로젝트 2: 통계적 추론{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">프로젝트 2: 통계적 추론</h1>
+    <p class="hero-subtitle">신뢰구간과 가설검정을 통한 통계적 분석</p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">연구 목표</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 프로젝트는 통계적 추론 방법을 사용하여 비디오 게임 데이터를 분석합니다. 
+        신뢰구간을 통해 Platform 게임의 비율을 추정하고, 
+        가설검정을 통해 Action과 Platform 장르 간의 매출 차이를 분석합니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>95%</h3>
+            <p>신뢰수준</p>
+        </div>
+        <div class="stat-card">
+            <h3>1000</h3>
+            <p>부트스트랩 반복</p>
+        </div>
+        <div class="stat-card">
+            <h3>0.05</h3>
+            <p>유의수준</p>
+        </div>
+        <div class="stat-card">
+            <h3>2</h3>
+            <p>분석 방법</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">신뢰구간 분석</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        Platform 게임의 비율에 대한 95% 신뢰구간을 계산했습니다. 
+        부트스트랩 방법을 사용하여 모집단 비율의 추정치를 구했습니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(proportion) }}</h3>
+            <p>표본 비율</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(ci_lower) }}</h3>
+            <p>신뢰구간 하한</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(ci_upper) }}</h3>
+            <p>신뢰구간 상한</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(ci_upper - ci_lower) }}</h3>
+            <p>신뢰구간 폭</p>
+        </div>
+    </div>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">
+            <i class="fas fa-info-circle"></i> 신뢰구간 해석
+        </h4>
+        <p style="color: #666; line-height: 1.6;">
+            Platform 게임의 비율이 {{ "%.1f"|format(proportion * 100) }}%로 추정되며, 
+            95% 신뢰구간은 [{{ "%.1f"|format(ci_lower * 100) }}%, {{ "%.1f"|format(ci_upper * 100) }}%]입니다. 
+            이는 모집단에서 Platform 게임의 실제 비율이 이 구간에 있을 가능성이 95%임을 의미합니다.
+        </p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">가설검정 분석</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        Action과 Platform 장르 간의 중앙값 매출 차이를 가설검정으로 분석했습니다. 
+        부트스트랩 방법을 사용하여 p-value를 계산했습니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(observed_diff) }}</h3>
+            <p>관찰된 차이</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "%.3f"|format(p_value) }}</h3>
+            <p>p-value</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ "통계적으로 유의하지 않음" if p_value > 0.05 else "통계적으로 유의함" }}</h3>
+            <p>검정 결과</p>
+        </div>
+        <div class="stat-card">
+            <h3>0.05</h3>
+            <p>유의수준</p>
+        </div>
+    </div>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
+        <h4 style="color: #00c73c; margin-bottom: 1rem;">
+            <i class="fas fa-chart-line"></i> 가설검정 해석
+        </h4>
+        <p style="color: #666; line-height: 1.6;">
+            {% if p_value > 0.05 %}
+            p-value ({{ "%.3f"|format(p_value) }})가 유의수준 0.05보다 크므로, 
+            귀무가설을 기각하지 못합니다. 이는 Action과 Platform 장르 간의 
+            중앙값 매출 차이가 통계적으로 유의하지 않음을 의미합니다.
+            {% else %}
+            p-value ({{ "%.3f"|format(p_value) }})가 유의수준 0.05보다 작으므로, 
+            귀무가설을 기각합니다. 이는 Action과 Platform 장르 간의 
+            중앙값 매출 차이가 통계적으로 유의함을 의미합니다.
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">분석 결과 시각화</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        아래 차트는 신뢰구간과 가설검정의 부트스트랩 분포를 보여줍니다. 
+        왼쪽 차트는 Platform 게임 비율의 부트스트랩 분포와 신뢰구간을, 
+        오른쪽 차트는 Action vs Platform 중앙값 차이의 부트스트랩 분포를 보여줍니다.
+    </p>
+    
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ chart_url }}" alt="통계적 추론 분석 차트">
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">주요 발견사항</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-percentage"></i> Platform 게임 비율
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                Platform 게임은 전체 게임의 약 {{ "%.1f"|format(proportion * 100) }}%를 차지하며, 
+                95% 신뢰구간 [{{ "%.1f"|format(ci_lower * 100) }}%, {{ "%.1f"|format(ci_upper * 100) }}%]에 
+                실제 모집단 비율이 있을 것으로 추정됩니다.
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-balance-scale"></i> 장르 간 매출 차이
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                Action과 Platform 장르 간의 중앙값 매출 차이는 {{ "%.3f"|format(observed_diff) }}이며, 
+                p-value는 {{ "%.3f"|format(p_value) }}입니다. 
+                {% if p_value > 0.05 %}
+                이는 통계적으로 유의하지 않은 차이임을 의미합니다.
+                {% else %}
+                이는 통계적으로 유의한 차이임을 의미합니다.
+                {% endif %}
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-chart-bar"></i> 부트스트랩 방법
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                부트스트랩 방법을 사용하여 신뢰구간과 가설검정을 수행했습니다. 
+                이 방법은 표본 데이터로부터 반복적으로 재샘플링하여 
+                모집단 매개변수의 분포를 추정합니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">결론 및 시사점</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 통계적 추론 분석을 통해 다음과 같은 인사이트를 얻을 수 있습니다:
+    </p>
+    
+    <ul style="line-height: 1.8; color: #666; margin-left: 2rem;">
+        <li style="margin-bottom: 1rem;">
+            <strong>Platform 게임의 시장 비중:</strong> Platform 게임은 전체 게임 시장의 
+            약 {{ "%.1f"|format(proportion * 100) }}%를 차지하며, 이는 상대적으로 작은 비중임을 보여줍니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>장르 간 매출 차이:</strong> Action과 Platform 장르 간의 중앙값 매출 차이는 
+            {% if p_value > 0.05 %}
+            통계적으로 유의하지 않아, 두 장르의 매출 성과가 유사함을 시사합니다.
+            {% else %}
+            통계적으로 유의하여, 두 장르 간에 실제 매출 성과 차이가 있음을 확인합니다.
+            {% endif %}
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>개발 전략 수립:</strong> 이 분석 결과는 게임 개발사가 Platform 장르 게임 개발을 
+            고려할 때 참고할 수 있는 중요한 정보를 제공합니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>통계적 방법론:</strong> 부트스트랩 방법을 사용한 신뢰구간과 가설검정은 
+            표본 크기가 작거나 정규분포 가정이 어려운 경우에도 유용한 통계적 추론 방법입니다.
+        </li>
+    </ul>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">사용된 통계적 방법</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-percentage" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>신뢰구간</h4>
+            <p>모집단 비율 추정</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-balance-scale" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>가설검정</h4>
+            <p>중앙값 차이 검정</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-random" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>부트스트랩</h4>
+            <p>재샘플링 방법</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-chart-line" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>시각화</h4>
+            <p>분포 및 결과 표시</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

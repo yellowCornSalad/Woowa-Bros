@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}프로젝트 1: 게임 장르별 매출 분석{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1 class="hero-title">프로젝트 1: 게임 장르별 매출 분석</h1>
+    <p class="hero-subtitle">비디오 게임 장르가 매출 성과에 미치는 영향 분석</p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">연구 목표</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 프로젝트는 비디오 게임 산업에서 게임 장르가 매출 성과에 미치는 영향을 분석합니다. 
+        2004년부터 2010년까지 출시된 게임들의 데이터를 활용하여, 
+        Action, Sports, Racing, Platform, Shooter, RPG 등 다양한 장르별로 
+        총 매출과 평균 매출을 비교 분석합니다.
+    </p>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>1770</h3>
+            <p>분석된 게임 수</p>
+        </div>
+        <div class="stat-card">
+            <h3>6</h3>
+            <p>주요 게임 장르</p>
+        </div>
+        <div class="stat-card">
+            <h3>2004-2010</h3>
+            <p>분석 기간</p>
+        </div>
+        <div class="stat-card">
+            <h3>North America</h3>
+            <p>분석 지역</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">데이터셋 설명</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 분석은 Dr. Joe Cox가 수집한 비디오 게임 데이터셋을 기반으로 합니다. 
+        데이터는 VGChartz에서 수집된 북미 지역 매출 데이터와 
+        "How Long to Beat" 웹사이트의 플레이타임 데이터를 포함합니다. 
+        주요 변수로는 US Sales (millions), Genre, Console, Review Score 등이 있습니다.
+    </p>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">분석 결과</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        아래 차트는 각 게임 장르별 총 매출과 게임당 평균 매출을 보여줍니다. 
+        이를 통해 어떤 장르가 가장 높은 매출을 기록했는지, 
+        그리고 어떤 장르가 게임당 평균적으로 가장 성공적인지 파악할 수 있습니다.
+    </p>
+    
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ chart_url }}" alt="게임 장르별 매출 분석 차트">
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">주요 발견사항</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-chart-line"></i> 총 매출 분석
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                Action 장르가 전체 매출에서 가장 높은 비중을 차지하며, 
+                이는 Action 게임의 광범위한 인기와 상업적 성공을 보여줍니다. 
+                Sports와 Racing 장르도 상당한 매출을 기록했습니다.
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-calculator"></i> 평균 매출 분석
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                게임당 평균 매출에서는 Educational/Sports 장르가 가장 높은 성과를 보였습니다. 
+                이는 해당 장르의 게임들이 적은 수량으로도 높은 매출을 달성했음을 의미합니다.
+            </p>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #00c73c;">
+            <h4 style="color: #00c73c; margin-bottom: 1rem;">
+                <i class="fas fa-gamepad"></i> 장르별 특성
+            </h4>
+            <p style="color: #666; line-height: 1.6;">
+                Action과 Shooter 장르는 넓은 매출 분포를 보이며, 
+                일부 게임들이 매우 높은 매출을 기록했습니다. 
+                반면 Strategy와 Simulation 장르는 상대적으로 낮은 매출을 보였습니다.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">결론 및 시사점</h2>
+    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+        이 분석을 통해 게임 개발사와 퍼블리셔는 다음과 같은 인사이트를 얻을 수 있습니다:
+    </p>
+    
+    <ul style="line-height: 1.8; color: #666; margin-left: 2rem;">
+        <li style="margin-bottom: 1rem;">
+            <strong>Action 장르의 우위:</strong> Action 게임은 가장 높은 총 매출을 기록하여 
+            시장에서 가장 인기 있는 장르임을 확인할 수 있습니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>니치 장르의 잠재력:</strong> Educational/Sports 장르는 게임당 평균 매출이 높아 
+            특정 타겟 오디언스를 대상으로 한 고품질 게임 개발의 가치를 보여줍니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>플랫폼별 차이:</strong> Xbox 360과 PlayStation 3에서 Action 게임이 특히 
+            높은 매출을 기록하여 콘솔별 장르 선호도 차이를 확인할 수 있습니다.
+        </li>
+        <li style="margin-bottom: 1rem;">
+            <strong>개발 전략 수립:</strong> 이 분석 결과는 게임 개발 및 마케팅 전략 수립에 
+            중요한 참고 자료로 활용될 수 있습니다.
+        </li>
+    </ul>
+</div>
+
+<div class="content-section">
+    <h2 class="section-title">사용된 분석 방법</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-chart-bar" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>막대 그래프</h4>
+            <p>장르별 매출 비교</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-chart-pie" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>박스 플롯</h4>
+            <p>매출 분포 분석</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-table" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>요약 통계</h4>
+            <p>평균, 중앙값, 표준편차</p>
+        </div>
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; text-align: center;">
+            <i class="fas fa-filter" style="font-size: 2rem; color: #00c73c; margin-bottom: 0.5rem;"></i>
+            <h4>데이터 정제</h4>
+            <p>결측값 및 이상값 처리</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
